@@ -12,28 +12,37 @@ import {
   Link,
   Avatar,
   FormControl,
-  FormHelperText,
   FormLabel,
-  InputRightElement,
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 
+const CMdEmail = chakra(MdEmail);
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
-const LoginPage = () => {
+//TODO: Add Password Requirements
+//TODO: Select Icon Library
+
+const SignUpPage = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const isInvalid = password === '' || email === '';
-  const handleShowClick = () => setShowPassword(!showPassword);
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const isInvalid =
+    password === "" ||
+    email === "" ||
+    name === "" ||
+    password !== confirmPassword;
 
-  const handleLogin = (event) => {
+  const handleSignUp = (event) => {
     event.preventDefault();
 
-    console.log('email', email);
-    console.log('password', password);
-  }
+    console.log("name", name);
+    console.log("email", email);
+    console.log("password", password);
+    console.log("password", password);
+  };
 
   return (
     <Flex
@@ -52,11 +61,12 @@ const LoginPage = () => {
       >
         <Avatar bg="primary.500" />
         <Heading color="primary.500">Welcome to Cereal Killer!</Heading>
-        <Box minW={{ base: "90%", md: "468px" }} borderWidth="2px" borderColor="secondary">
-          <form 
-            method="POST"
-            onSubmit={handleLogin}
-            >
+        <Box
+          minW={{ base: "90%", md: "468px" }}
+          borderWidth="2px"
+          borderColor="secondary"
+        >
+          <form method="POST" onSubmit={handleSignUp}>
             <Stack
               spacing={4}
               p="1rem"
@@ -64,11 +74,27 @@ const LoginPage = () => {
               boxShadow="md"
             >
               <FormControl isRequired>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>Name</FormLabel>
                 <InputGroup>
                   <InputLeftElement
                     pointerEvents="none"
                     children={<CFaUserAlt color="secondary.500" />}
+                  />
+                  <Input
+                    type="text"
+                    placeholder="John Doe"
+                    aria-describedby="namel-helper-text"
+                    value={name}
+                    onChange={({ target }) => setName(target.value)}
+                  />
+                </InputGroup>
+              </FormControl>
+              <FormControl isRequired>
+                <FormLabel>Email</FormLabel>
+                <InputGroup>
+                  <InputLeftElement
+                    pointerEvents="none"
+                    children={<CMdEmail color="secondary.500" />}
                   />
                   <Input
                     type="email"
@@ -88,23 +114,30 @@ const LoginPage = () => {
                     children={<CFaLock color="secondary.500" />}
                   />
                   <Input
-                    type={showPassword ? "text" : "password"}
+                    type={"password"}
                     placeholder="*******"
                     aria-describedby="password-helper-text"
                     value={password}
                     onChange={({ target }) => setPassword(target.value)}
                   />
-                  <InputRightElement width="4.5rem">
-                    <Button h="1.75rem" size="sm" colorScheme="secondary" variant="ghost" onClick={handleShowClick}>
-                      {showPassword ? "Hide" : "Show"}
-                    </Button>
-                  </InputRightElement>
                 </InputGroup>
-                <FormHelperText textAlign="right">
-                  <Link color="brand.secondary" href="#">
-                    Forgot Password?
-                    </Link>
-                </FormHelperText>
+              </FormControl>
+              <FormControl isRequired>
+                <FormLabel>Confirm your Password</FormLabel>
+                <InputGroup>
+                  <InputLeftElement
+                    pointerEvents="none"
+                    color="gray.300"
+                    children={<CFaLock color="secondary.500" />}
+                  />
+                  <Input
+                    type={"password"}
+                    placeholder="*******"
+                    aria-describedby="password-helper-text"
+                    value={confirmPassword}
+                    onChange={({ target }) => setConfirmPassword(target.value)}
+                  />
+                </InputGroup>
               </FormControl>
               <Button
                 borderRadius={0}
@@ -114,20 +147,20 @@ const LoginPage = () => {
                 width="full"
                 disabled={isInvalid}
               >
-                Login
+                Sign Up
               </Button>
             </Stack>
           </form>
         </Box>
       </Stack>
       <Box>
-        New to us?{" "}
-        <Link color="brand.primary" href="/signup">
-          Sign Up
+        Have an account with us?{" "}
+        <Link color="brand.primary" href="/login">
+          Log in
         </Link>
       </Box>
     </Flex>
   );
 };
 
-export default LoginPage;
+export default SignUpPage;
