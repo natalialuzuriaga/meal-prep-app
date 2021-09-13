@@ -17,7 +17,6 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
-import { Field, FieldArray, Form, Formik, getIn } from "formik";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
@@ -41,7 +40,7 @@ const LoginPage = () => {
       flexDirection="column"
       width="100wh"
       height="100vh"
-      backgroundColor="gray.200"
+      backgroundColor="background.500"
       justifyContent="center"
       alignItems="center"
     >
@@ -51,9 +50,9 @@ const LoginPage = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Avatar bg="teal.500" />
-        <Heading color="teal.400">Welcome to Cereal Killer!</Heading>
-        <Box minW={{ base: "90%", md: "468px" }}>
+        <Avatar bg="primary.500" />
+        <Heading color="primary.500">Welcome to Cereal Killer!</Heading>
+        <Box minW={{ base: "90%", md: "468px" }} borderWidth="2px" borderColor="secondary">
           <form 
             method="POST"
             onSubmit={handleLogin}
@@ -61,7 +60,7 @@ const LoginPage = () => {
             <Stack
               spacing={4}
               p="1rem"
-              backgroundColor="whiteAlpha.900"
+              backgroundColor="whiteAlpha.700"
               boxShadow="md"
             >
               <FormControl isRequired>
@@ -69,7 +68,7 @@ const LoginPage = () => {
                 <InputGroup>
                   <InputLeftElement
                     pointerEvents="none"
-                    children={<CFaUserAlt color="gray.300" />}
+                    children={<CFaUserAlt color="secondary.500" />}
                   />
                   <Input
                     type="email"
@@ -86,7 +85,7 @@ const LoginPage = () => {
                   <InputLeftElement
                     pointerEvents="none"
                     color="gray.300"
-                    children={<CFaLock color="gray.300" />}
+                    children={<CFaLock color="secondary.500" />}
                   />
                   <Input
                     type={showPassword ? "text" : "password"}
@@ -96,20 +95,22 @@ const LoginPage = () => {
                     onChange={({ target }) => setPassword(target.value)}
                   />
                   <InputRightElement width="4.5rem">
-                    <Button h="1.75rem" size="sm" onClick={handleShowClick}>
+                    <Button h="1.75rem" size="sm" colorScheme="secondary" variant="ghost" onClick={handleShowClick}>
                       {showPassword ? "Hide" : "Show"}
                     </Button>
                   </InputRightElement>
                 </InputGroup>
                 <FormHelperText textAlign="right">
-                  <Link>forgot password?</Link>
+                  <Link color="brand.secondary" href="#">
+                    Forgot Password?
+                    </Link>
                 </FormHelperText>
               </FormControl>
               <Button
                 borderRadius={0}
                 type="submit"
                 variant="solid"
-                colorScheme="teal"
+                colorScheme="primary"
                 width="full"
                 disabled={isInvalid}
               >
@@ -121,7 +122,7 @@ const LoginPage = () => {
       </Stack>
       <Box>
         New to us?{" "}
-        <Link color="teal.500" href="#">
+        <Link color="brand.primary" href="#">
           Sign Up
         </Link>
       </Box>
