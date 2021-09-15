@@ -51,7 +51,7 @@ const LoginPage = () => {
         alignItems="center"
       >
         <Avatar bg="primary.500" />
-        <Heading color="primary.500">Welcome to Cereal Killer!</Heading>
+        <Heading color="primary.500">Welcome to Food Thyme!</Heading>
         <Box minW={{ base: "90%", md: "468px" }} borderWidth="2px" borderColor="secondary">
           <form 
             method="POST"

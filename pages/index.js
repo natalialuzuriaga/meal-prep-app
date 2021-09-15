@@ -1,10 +1,7 @@
-//our-domain.com/
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import { Heading } from "@chakra-ui/react"
 
 function HomePage() {
-  return <h1> The Home Page </h1>
+  return <Heading>I'm a Heading</Heading>
 }
 
 export default HomePage;
